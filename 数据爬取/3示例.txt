@@ -13,7 +13,8 @@ danmu = re.findall('">(.*?)</d>', res.text)
 # 最近的新视频没有弹幕是正常现象
 # 至于6月6日后会怎么样我现在不清楚
 # 我在代码中注释了一个备用api接口和一个历史弹幕接口
-# 如果要有大改动的化我把项目开源到我的GitHub上
+# 如果要有大改动或者有问题
+# 我已经把项目放到我的GitHub上（https://github.com/Lanqilu/BiliBilil-leaderboard）
 # 有精力我会调整
 
 <?xml version="1.0" encoding="UTF-8"?>
