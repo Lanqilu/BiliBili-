@@ -26,7 +26,7 @@ def leaderboard():
     ''' 爬取B站现在各个分区的日排行、三日排行、周排行、月排行 '''
     os.chdir("./数据/排行榜") # 切换工作目录
     
-   """
+    """
     VC code 的相对目录和其他IDE有不同，貌似是工作区的原因
     VC code的./是打开的主文件夹的下的路径
     pycharm,IELD以运行文件的文件夹的路径为./
@@ -152,7 +152,6 @@ def leaderboard():
             play_list = []
             pts_list = []
             title_list = []
-
 
 if __name__ == "__main__":
     # 当.py文件被直接运行时，if __name__ == '__main__'之下的代码块将被运行；
