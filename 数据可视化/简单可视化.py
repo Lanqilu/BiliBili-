@@ -35,7 +35,12 @@ for i in range(1,101):
     index_list.append(i) 
 
 
-os.chdir('./可视化结果')
+try :
+    os.chdir('./可视化结果')
+except :
+    os.makedirs('./可视化结果')
+    os.chdir('./可视化结果')
+    
 if not os.path.exists(save_path):
     os.makedirs(save_path)
 

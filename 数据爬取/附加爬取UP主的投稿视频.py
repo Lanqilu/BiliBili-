@@ -14,7 +14,12 @@ import re
 from functions.date_fuc import date
 from functions.get_url_fuc import get_url
 
-os.chdir("./数据/UP主视频")  #改变当前工作目录
+try :
+    os.chdir("./数据/UP主视频")
+except :
+    os.makedirs("./数据/UP主视频")
+    os.chdir("./数据/UP主视频")
+
 save_path = date()
 if not os.path.exists(save_path):
     os.makedirs(save_path)

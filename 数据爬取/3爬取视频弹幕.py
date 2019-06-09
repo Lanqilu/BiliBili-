@@ -21,9 +21,15 @@ danmu_list = []
 cid_list = []
 j = 0
 # cid = 93489702
-os.chdir("./数据/视频弹幕")
+try :
+    os.chdir("./数据/视频弹幕")
+except :
+    os.makedirs("./数据/视频弹幕")
+    os.chdir("./数据/视频弹幕")
+    
 save_path = date()
 if not os.path.exists(save_path):
+
     os.makedirs(save_path)
 
 with open("../排行榜/{}/BiliBili-{}-{}-cid.json".format(date(), "全站", "日排行"), 'r', encoding='utf-8') as f2:

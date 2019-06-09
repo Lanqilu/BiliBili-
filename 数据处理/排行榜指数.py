@@ -47,7 +47,13 @@ for i, j in zip(play_list, coins_list):
 coins_dict = dict(zip(title_list, coins_play_list))
 
 save_path = date()
-os.chdir("./数据处理结果")# 切换工作目录
+
+try :
+    os.chdir("./数据处理结果")
+except :
+    os.makedirs("./数据处理结果")
+    os.chdir("./数据处理结果")
+    
 if not os.path.exists(save_path):
     os.makedirs(save_path)
 
