@@ -20,16 +20,17 @@ from fake_useragent import UserAgent
 # url = "http://comment.bilibili.com/{}.xml".format(cid)
 
 # 附加爬取UP主的投稿视频
-uid = 250858633
-size = 10
-n = 1
-url = "http://space.bilibili.com/ajax/member/getSubmitVideos?mid=" + \
-            str(uid) + "&pagesize=" + str(size) + "&page=" + str(n)
+# uid = 250858633
+# size = 10
+# n = 1
+# url = "http://space.bilibili.com/ajax/member/getSubmitVideos?mid=" + \
+#             str(uid) + "&pagesize=" + str(size) + "&page=" + str(n)
 
-res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20)
-res.encoding = 'utf-8'
-soup = BeautifulSoup(res.text, 'lxml')
+# res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20)
+# res.encoding = 'utf-8'
+# soup = BeautifulSoup(res.text, 'lxml')
 
-print(soup.prettify())
+# print(soup.prettify())
 
 # print(json.dumps(res.json, indent=2))
+print(UserAgent().random)

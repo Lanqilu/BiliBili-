@@ -1,2 +1,0 @@
-class Feil(object):
-    pass
