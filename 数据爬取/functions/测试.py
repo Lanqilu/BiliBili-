@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re 
 import json
 import requests
 
@@ -33,4 +34,11 @@ from fake_useragent import UserAgent
 # print(soup.prettify())
 
 # print(json.dumps(res.json, indent=2))
-print(UserAgent().random)
+# print(UserAgent().random)
+
+
+t = 'cgvideo.com/upgcxcode/15/74/96367415/96367415_nb2-1-30011.m4s?expires=1560306900&platform=pc&ssig=wLlccL9E6Mm7qfMVU8HeFw&oi=666770708&trid=7508be6c722840a9a507c10b76b147f5&nfb=maPYqpoel5MI3qOUX6YpRA==&nfc=1&mid=45900908","http://cn-zjjh2-cmcc-v-04.acgvideo.com/upgcxcode/15/74/96367415/96367415_nb2-1-30011.m4s?expires=1560306900&platform=pc&ssig=wLlccL9E6Mm7qfMVU8HeFw&oi=666770708&trid=7508be6c722840a9a507c10b76b147f5&nfb=maPYqpoel5MI3qOUX6YpRA==&nfc=1&mid=45900908"],"bandwidth":278747,"sar":"1:1","codecs":"hev1.1.6.L120.90","base_url":"http://'
+cid1 = re.search(r'/upgcxcode/(\d+)/(\d+)/(\d+)/', t).group()
+cid2 = re.search(r'\d{8}', cid1).group()
+# cid = re.search(r'\d+', cid2).group()
+print(cid2)
