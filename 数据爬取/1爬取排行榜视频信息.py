@@ -24,7 +24,7 @@ from functions.get_url_fuc import get_url
 
 def leaderboard():
     ''' 爬取B站现在各个分区的日排行、三日排行、周排行、月排行 '''
-    os.chdir("../数据/排行榜") # 切换工作目录
+    os.chdir("./数据/排行榜") # 切换工作目录
     
     """
     VC code 的相对目录和其他IDE有不同，貌似是工作区的原因

@@ -52,4 +52,4 @@ if __name__ == "__main__":
             j = j+1
             print("{}%".format(j))
         f1.close()
-    print('100%')
+

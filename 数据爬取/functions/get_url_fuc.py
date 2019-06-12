@@ -1,11 +1,11 @@
-import random
-import re
-import time
-import requests
 
-# fake-useragent对频繁更换UserAgent，可以避免触发相应的反爬机制
-# from fake_useragent import UserAgent  # UserAgent用户代理,识别浏览器的一串字符串
-# 莫名报错，网上试了几个方法都没有用
+import re
+import requests
+import random
+import time
+
+#fake-useragent对频繁更换UserAgent，可以避免触发相应的反爬机制
+from fake_useragent import UserAgent  # UserAgent用户代理,识别浏览器的一串字符串
 
 
 def get_url(url, type1):
@@ -21,16 +21,16 @@ def get_url(url, type1):
     # proxy = {"http": '47.97.82.218:8080'}
     
     if type1 == None:
-         res = requests.get(url=url, headers={'user-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'}, timeout=20)
+         res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20)
     elif type1 == "json":
-        res = requests.get(url=url, headers={'user-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'},timeout=20).json()
+        res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20).json()
     elif type1 == "text":
-        res = requests.get(url=url,headers={'user-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'}, timeout=20).text
+        res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20).text
     elif type1 == '1':
-        res = requests.get(url=url, proxies = proxy, headers={'user-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'}, timeout=40).text
+        res = requests.get(url=url, proxies = proxy, headers={"User-Agent": UserAgent().random}, timeout=40).text
         # time.sleep(random.randint(0,2))
     elif type1 == '2':
-        res = requests.get(url=url, proxies = proxy, headers={'user-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'}, timeout=40).json()
+        res = requests.get(url=url, proxies = proxy, headers={"User-Agent": UserAgent().random}, timeout=40).json()
     return res
 
     # 输出类型为json的对象，json是一种轻量级的数据交换格式
@@ -49,8 +49,9 @@ def aid_change(aid):
         cid0 = re.search(r'cid=\d+', res).group()#/d匹配数字 +重复/d
         cid = re.search(r'\d+', str(cid0)).group()#.group()返回匹配小组字符串
     except :
-        cid1 = re.search(r'/upgcxcode/(\d+)/(\d+)/(\d+)/', res).group()
-        cid = re.search(r'\d{8}', cid1).group()
+        cid1 = re.search(r'/upgcxcode/(\d+)/(\d+)/(\d+)/(\d+)-', res).group()
+        cid2 = re.search(r'/\d+-', cid1).group()
+        cid = re.search(r'\d+', cid2).group()
     print(cid)
     return cid
 
