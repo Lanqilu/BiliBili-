@@ -21,18 +21,20 @@ danmu_list = []
 cid_list = []
 j = 0
 # cid = 93489702
-try :
+try:
     os.chdir("./数据/视频弹幕")
-except :
+except:
     os.makedirs("./数据/视频弹幕")
     os.chdir("./数据/视频弹幕")
-    
+
 save_path = date()
 if not os.path.exists(save_path):
 
     os.makedirs(save_path)
 
-with open("../排行榜/{}/BiliBili-{}-{}-cid.json".format(date(), "全站", "日排行"), 'r', encoding='utf-8') as f2:
+with open("../排行榜/{}/BiliBili-{}-{}-cid.json".format(date(), "全站", "日排行"),
+          'r',
+          encoding='utf-8') as f2:
     cid_list = json.load(f2)
     print(cid_list)
     f2.close()
@@ -44,18 +46,18 @@ with open("../排行榜/{}/BiliBili-{}-{}-cid.json".format(date(), "全站", "�
         # 查看历史弹幕api接口
         # date = input('年-月-日')
         # https://api.bilibili.com/x/v2/dm/history?type=1&date=2019-05-29&oid=93489702
-        res = get_url(url,None)
+        res = get_url(url, None)
         res.encoding = 'utf-8'
         danmu = re.findall('">(.*?)</d>', res.text)
         j = j + 1
-        print(str(j)+"%")
+        print(str(j) + "%")
         # save_path = date
 
-        with open('{}/{}.json'.format(save_path, cid), 'w', encoding="utf-8") as json_file: # 在打开模式w下修改
+        with open('{}/{}.json'.format(save_path, cid), 'w',
+                  encoding="utf-8") as json_file:  # 在打开模式w下修改
             for i in danmu:
                 danmu_list.append(i)
             json.dump(danmu_list, json_file, ensure_ascii=False)
             # ensure_ascii=False关闭json保存中文时使用ascii码，便于人查看
             json_file.close()
             danmu_list = []
-

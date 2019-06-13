@@ -24,8 +24,21 @@ if not os.path.exists(save_path):
     os.makedirs(save_path)
 # print(os.getcwd())uid:视频投稿者代号
 
-area_dict = {"全站": 0, "动画": 1, "国创相关": 168, "音乐": 3, "舞蹈": 129, "游戏": 4, "科技": 36,
-             "数码": 188, "生活": 160, "鬼畜": 119, "时尚": 155, "娱乐": 5, "影视": 181}
+area_dict = {
+    "全站": 0,
+    "动画": 1,
+    "国创相关": 168,
+    "音乐": 3,
+    "舞蹈": 129,
+    "游戏": 4,
+    "科技": 36,
+    "数码": 188,
+    "生活": 160,
+    "鬼畜": 119,
+    "时尚": 155,
+    "娱乐": 5,
+    "影视": 181
+}
 day_dict = {"日排行": 1, "三日排行": 3, "周排行": 7, "月排行": 30}
 
 aid_list = []
@@ -43,7 +56,10 @@ j = 0
 # for k1 in area_dict.items():
 #     for k2 in day_dict.items():
 # 全部爬取较费时间，多线程还不太会故以全站日排行为例
-with open("../排行榜/{}/aid/BiliBili-{}-{}-{}.json".format(save_path, "全站", "日排行", "aid"), 'r', encoding='utf-8')as f1:
+with open("../排行榜/{}/aid/BiliBili-{}-{}-{}.json".format(
+        save_path, "全站", "日排行", "aid"),
+          'r',
+          encoding='utf-8') as f1:
     aid_list = json.load(f1)  # 读取文件
     for i in aid_list:
         cid = aid_change(i)
@@ -56,5 +72,7 @@ with open("../排行榜/{}/aid/BiliBili-{}-{}-{}.json".format(save_path, "全站
     f1.close()
 
 # with open("{}/BiliBili-{}-{}-cid.json".format(date(),"全站","日排行"),'w',encoding='utf-8') as f2:
-with open("{}/BiliBili-{}-{}-cid.json".format(save_path, "全站", "日排行"), 'w', encoding='utf-8') as f2:
+with open("{}/BiliBili-{}-{}-cid.json".format(save_path, "全站", "日排行"),
+          'w',
+          encoding='utf-8') as f2:
     json.dump(cid_list, f2)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def get_value(dict_name, object_key):
     """
     从嵌套的字典中找到需要的值\n
@@ -29,4 +30,3 @@ def get_value(dict_name, object_key):
         return None
     else:
         return None
-

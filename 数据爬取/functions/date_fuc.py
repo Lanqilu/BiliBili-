@@ -1,5 +1,6 @@
 import time
 
+
 def date():
     """
     获取现在时间格式为-年-月-日
@@ -12,7 +13,7 @@ def print_info(j):
     """
     打印进程
     """
-    r = j/52
+    r = j / 52
     list1 = []
     for i in range(1, 101):
         list1.append(i)
@@ -24,6 +25,6 @@ def print_info(j):
 
 if __name__ == "__main__":
     list1 = []
-    for i in range(1,101):
+    for i in range(1, 101):
         list1.append(i)
     print(list1)

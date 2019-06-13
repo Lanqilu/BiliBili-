@@ -1,10 +1,10 @@
 
 import re
 import requests
-import random
-import time
+# import random
+# import time
 
-#fake-useragent对频繁更换UserAgent，可以避免触发相应的反爬机制
+# fake-useragent对频繁更换UserAgent，可以避免触发相应的反爬机制
 from fake_useragent import UserAgent  # UserAgent用户代理,识别浏览器的一串字符串
 
 
@@ -44,7 +44,6 @@ def aid_change(aid):
     """
     url = "http://www.bilibili.com/video/av" + str(aid)
     res = get_url(url, "text")
-    
     try:
         cid0 = re.search(r'cid=\d+', res).group()#/d匹配数字 +重复/d
         cid = re.search(r'\d+', str(cid0)).group()#.group()返回匹配小组字符串
