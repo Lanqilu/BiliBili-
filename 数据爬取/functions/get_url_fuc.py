@@ -17,15 +17,18 @@ def get_url(url, type1):
     # 使用的代理ip地址
     # https://www.kuaidaili.com/free/
     # http://ip.zdaye.com/dayProxy.html
-    proxy = {"http": '117.191.11.111:8080'}
+    # proxy = {"http": '117.191.11.111:8080'}
     # proxy = {"http": '47.97.82.218:8080'}
     
     if type1 == None:
          res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20)
+        # res = requests.get(url=url, timeout=20)
     elif type1 == "json":
         res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20).json()
+        # res = requests.get(url=url, timeout=20).json()
     elif type1 == "text":
         res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20).text
+        # res = requests.get(url=url, timeout=20).text
     elif type1 == '1':
         res = requests.get(url=url, proxies = proxy, headers={"User-Agent": UserAgent().random}, timeout=40).text
         # time.sleep(random.randint(0,2))
@@ -45,8 +48,8 @@ def aid_change(aid):
     url = "http://www.bilibili.com/video/av" + str(aid)
     res = get_url(url, "text")
     try:
-        cid0 = re.search(r'cid=\d+', res).group()#/d匹配数字 +重复/d
-        cid = re.search(r'\d+', str(cid0)).group()#.group()返回匹配小组字符串
+        cid0 = re.search(r'cid=\d+', res).group() # /d匹配数字 +重复/d
+        cid = re.search(r'\d+', str(cid0)).group() # .group()返回匹配小组字符串
     except :
         cid1 = re.search(r'/upgcxcode/(\d+)/(\d+)/(\d+)/(\d+)-', res).group()
         cid2 = re.search(r'/\d+-', cid1).group()

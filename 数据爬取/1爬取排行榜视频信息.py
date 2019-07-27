@@ -93,13 +93,12 @@ def leaderboard():
     day_dict = {"日排行": 1, "三日排行": 3, "周排行": 7, "月排行": 30}
 
     # for循环将分区字典的值分次分别写入到k1和v
-    for k1, v in area_dict.items():  #items()返回字典中所有的一一对应的值
+    for k1, v in area_dict.items():  # items()返回字典中所有的一一对应的值
         # for循环排行时间字典
         for k2, d in day_dict.items():
             # B站排行榜API的url 修改rid=可以改变分区，修改day=可以改变排行榜时间范围
             url = "https://api.bilibili.com/x/web-interface/ranking?rid={}&day={}".format(
                 v, d)
-
             res = get_url(url, "json")
             # 输出类型为json的对象，json是一种轻量级的数据交换格式
             # 易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率

@@ -71,8 +71,6 @@ with open("../排行榜/{}/aid/BiliBili-{}-{}-{}.json".format(
         print("{}%".format(j))
     f1.close()
 
-# with open("{}/BiliBili-{}-{}-cid.json".format(date(),"全站","日排行"),'w',encoding='utf-8') as f2:
-with open("{}/BiliBili-{}-{}-cid.json".format(save_path, "全站", "日排行"),
-          'w',
-          encoding='utf-8') as f2:
+# with open("{}/BiliBili-{}-{}-cid.json".format(date(),"全站","日排行"),'w', encoding='utf-8') as f2:
+with open("{}/BiliBili-{}-{}-cid.json".format(save_path, "全站", "日排行"),'w', encoding='utf-8') as f2:
     json.dump(cid_list, f2)
