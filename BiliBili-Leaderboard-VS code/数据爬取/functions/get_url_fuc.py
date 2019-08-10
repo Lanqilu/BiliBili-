@@ -48,11 +48,14 @@ def aid_change(aid):
     url = "http://www.bilibili.com/video/av" + str(aid)
     res = get_url(url, "text")
     try:
-        cid0 = re.search(r'cid=\d+', res).group() # /d匹配数字 +重复/d
-        cid = re.search(r'\d+', str(cid0)).group() # .group()返回匹配小组字符串
-    except :
-        cid1 = re.search(r'/upgcxcode/(\d+)/(\d+)/(\d+)/(\d+)-', res).group()
-        cid2 = re.search(r'/\d+-', cid1).group()
+        cid0 = re.search(r'cid=\d+', res).group()  # /d匹配数字 +重复/d
+        cid = re.search(r'\d+', str(cid0)).group()  # .group()返回匹配小组字符串
+    except:
+        # cid1 = re.search(r'/upgcxcode/(\d+)/(\d+)/(\d+)/(\d+)-', res).group()
+        # cid2 = re.search(r'/\d+-', cid1).group()
+        # cid = re.search(r'\d+', cid2).group()
+        cid1 = re.search(r'/upgcxcode/(\d+)/(\d+)/(\d+)/', res).group()
+        cid2 = re.search(r'\d{8}', cid1).group()
         cid = re.search(r'\d+', cid2).group()
     print(cid)
     return cid

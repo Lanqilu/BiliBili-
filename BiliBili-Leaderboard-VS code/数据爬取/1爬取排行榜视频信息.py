@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+import json
+import os
+
+from functions.date_fuc import date, print_info
+from functions.deal_fuc import get_value
+from functions.get_url_fuc import get_url
+
 """
 该程序作用:
 爬取各区的排行榜名单
@@ -13,13 +20,6 @@
     pts:B站按一定公式计算出是综合得分
     title:视频标题
 """
-import json
-import os
-
-from functions.date_fuc import date, print_info
-from functions.deal_fuc import get_value
-from functions.get_url_fuc import get_url
-
 
 def leaderboard():
     ''' 爬取B站现在各个分区的日排行、三日排行、周排行、月排行 '''
@@ -31,12 +31,9 @@ def leaderboard():
     如果要在PyCharm,IELD下调试需要把部分./改为../
     """
 
-    # os.chdir("./数据/排行榜")
-
     j = 0  # 统计循环次数,用于显示爬取进程
 
-    # 爬取结果的文件保存目录
-    save_path = date()
+    save_path = date()  # 爬取结果的文件保存目录
 
     # 各项数据存储列表
     aid_list = []
@@ -57,7 +54,7 @@ def leaderboard():
     title:视频标题
     """
 
-    # 如果文件名称重复则将旧文件夹重命名以尾部加0开始依次递推
+    # 如果文件名称重复则将旧文件夹重命名以尾部加0开始依次递推,防止文件夹重复
     if os.path.exists(save_path):
         try:
             os.rename(save_path, save_path + "0")
@@ -100,13 +97,12 @@ def leaderboard():
             url = "https://api.bilibili.com/x/web-interface/ranking?rid={}&day={}".format(v, d)
             res = get_url(url, "json")
             # 输出类型为json的对象，json是一种轻量级的数据交换格式
-            # 易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率
 
+            # 必要时检查res是否有错误
             # print(json.dumps(res, indent=2))
             # break
-            # 必要时检查res是否有错误
 
-            # 可以采用正则表达式进行数据匹配，例如下面
+            # 也可以采用正则表达式进行数据匹配，例如下面
             # res = get_url(url,'text')
             # aid = re.findall(r'"aid":"\d+",',res)
 
@@ -114,6 +110,7 @@ def leaderboard():
             # 通过处理，相较于正则表达式有着更好的一条条数据对应起来
             # 在逻辑有上更条理
             # 并且在爬取其他类似api接口时可以适当修改使用
+            # 详见function/deal_fuc.py的get_value函数
             rank_list = get_value(res, "list")
 
             for i in range(len(rank_list)):
@@ -132,7 +129,7 @@ def leaderboard():
                 pts_list.append(int(pts0))
                 title_list.append(title0)
                 uid_list.append(int(uid0))
-
+              
                 for k3 in date_type:
                     with open("{}/{}/BiliBili-{}-{}-{}.json".format(
                             save_path, k3, k1, k2, k3),
