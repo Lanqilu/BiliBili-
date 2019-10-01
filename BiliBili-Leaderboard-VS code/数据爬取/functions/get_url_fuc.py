@@ -1,7 +1,7 @@
 
 import re
 import requests
-# import random
+import random
 # import time
 
 # fake-useragent对频繁更换UserAgent，可以避免触发相应的反爬机制
@@ -20,24 +20,30 @@ def get_url(url, type1):
     # proxy = {"http": '117.191.11.111:8080'}
     # proxy = {"http": '47.97.82.218:8080'}
     
-    if type1 == None:
-         res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20)
-        # res = requests.get(url=url, timeout=20)
+    ls = [{'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:22.0) Gecko/20130405 Firefox/22.0'},
+          {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/18.0.1'},
+          {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.2309.372 Safari/537.36'},
+          {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20130331 Firefox/21.0'}
+         ]
+    if type1 is None:
+        res = requests.get(url=url,headers = dict(random.choice(ls)), timeout=20)
+        # res = requests.get(url=url,timeout=20)
     elif type1 == "json":
-        res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20).json()
+        res = requests.get(url=url,headers = dict(random.choice(ls)), timeout=20).json()
         # res = requests.get(url=url, timeout=20).json()
     elif type1 == "text":
-        res = requests.get(url=url, headers={"User-Agent": UserAgent().random}, timeout=20).text
+        res = requests.get(url=url,headers = dict(random.choice(ls)), timeout=20).text
         # res = requests.get(url=url, timeout=20).text
-    elif type1 == '1':
-        res = requests.get(url=url, proxies = proxy, headers={"User-Agent": UserAgent().random}, timeout=40).text
-        # time.sleep(random.randint(0,2))
-    elif type1 == '2':
-        res = requests.get(url=url, proxies = proxy, headers={"User-Agent": UserAgent().random}, timeout=40).json()
+    # elif type1 == '1':
+    #     res = requests.get(url=url, proxies = proxy, headers={"User-Agent": UserAgent().random}, timeout=40).text
+    #     # time.sleep(random.randint(0,2))
+    # elif type1 == '2':
+    #     res = requests.get(url=url, proxies = proxy, headers={"User-Agent": UserAgent().random}, timeout=40).json()
     return res
 
     # 输出类型为json的对象，json是一种轻量级的数据交换格式
     # 易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率
+ 
  
 
 def aid_change(aid):
